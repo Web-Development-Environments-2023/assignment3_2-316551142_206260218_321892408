@@ -10,19 +10,19 @@ router.post("/Register", async (req, res, next) => {
     // valid parameters
     // username exists
     let user_details = {
-      username: req.body.username,
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
+      username: req.body.userName,
+      firstname: req.body.firstName,
+      lastname: req.body.lastName,
       country: req.body.country,
       password: req.body.password,
       email: req.body.email,
-      profilePic: req.body.profilePic
+      // profilePic: req.body.profilePic
     }
     let users = [];
-    users = await DButils.execQuery("SELECT username from users");
+    users = await DButils.execQuery("SELECT userName from users");
 
-    if (users.find((x) => x.username === user_details.username))
-      throw { status: 409, message: "Username taken" };
+    if (users.find((x) => x.userName === user_details.userName))
+      throw { status: 409, message: "userName taken" };
 
     // add the new username
     let hash_password = bcrypt.hashSync(
@@ -58,8 +58,7 @@ router.post("/Login", async (req, res, next) => {
     }
 
     // Set cookie
-    req.session.user_id = user.user_id;
-
+    req.session.user_id = user.userName;
 
     // return cookie
     res.status(200).send({ message: "login succeeded", success: true });
