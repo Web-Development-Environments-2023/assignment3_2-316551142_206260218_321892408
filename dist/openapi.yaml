@@ -84,32 +84,18 @@ paths:
                   type: string
                   description: reciepe's id which the user saved
                   example: 716429
-                userName:
-                  type: string
-                  description: userName of the user
-                  example: lirongr
       responses:
         "200":
           description: The Recipe successfully saved as favorite
         "401":
           description: user is not authorized
-      # security:
-      # - cookieAuth: []
-  /users/favorites/{userName}:
+      security:
+      - cookieAuth: []
     get:
       tags:
       - Users
       summary: Return the favorite recipes that were saved by user
       description: Get an array of recipes that were saved by a specific user
-      parameters:
-      - name: userName
-        in: path
-        description: userName of the user
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
       responses:
         "200":
           description: data about the user's favorites recipes returned
@@ -121,23 +107,14 @@ paths:
                   $ref: '#/components/schemas/RecipePreview'
         "401":
           description: user is not authorized
-      # security:
-      # - cookieAuth: []
-  /users/userOn/{userName}:
+      security:
+      - cookieAuth: []
+  /users/userOn:
     get:
       tags:
       - Users
       summary: Return the last three recipes that user view
       description: Get an array of recipes that were saved by a specific user
-      parameters:
-      - name: userName
-        in: path
-        description: userName of the user
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
       responses:
         "200":
           description: data about the user's favorites recipes returned
@@ -154,9 +131,9 @@ paths:
                     $ref: '#/components/schemas/Favorite'
         "401":
           description: user is not authorized
-      # security:
-      # - cookieAuth: []
-  /users/myFamily/:
+      security:
+      - cookieAuth: []
+  /users/myFamily:
     post:
       tags:
       - Users
@@ -172,32 +149,18 @@ paths:
                   type: string
                   description: reciepe's id which the user saved
                   example: 2
-                userName:
-                  type: string
-                  description: userName of the user
-                  example: lirongr
       responses:
         "200":
           description: The Recipe successfully saved as viewed
         "401":
           description: user is not authorized
-      # security:
-      # - cookieAuth: []
-  /users/myFamily/{userName}:
+      security:
+      - cookieAuth: []
     get:
       tags:
       - Users
       summary: Return the family recipes that user
       description: Get an array of recipes that were saved by a specific user
-      parameters:
-      - name: userName
-        in: path
-        description: userName of the user
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
       responses:
         "200":
           description: data about the user's family recipes returned
@@ -209,23 +172,14 @@ paths:
                   $ref: '#/components/schemas/Recipe'
         "401":
           description: user is not authorized
-      # security:
-      # - cookieAuth: []
-  /users/myRecipe/{userName}:
+      security:
+      - cookieAuth: []
+  /users/myRecipe:
     get:
       tags:
       - Users
       summary: Return the recipes of the user
       description: Get an array of recipes that were saved by a specific user
-      parameters:
-      - name: userName
-        in: path
-        description: userName of the user
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
       responses:
         "200":
           description: data about the user's recipes returned
@@ -237,8 +191,8 @@ paths:
                   $ref: '#/components/schemas/Recipe'
         "401":
           description: user is not authorized
-      # security:
-      # - cookieAuth: []
+      security:
+      - cookieAuth: []
   /recipes/showRecipe:
     get:
       tags:
@@ -254,13 +208,6 @@ paths:
         explode: false
         schema:
           type: integer
-      - name: userName
-        in: query
-        description: userName's user
-        style: simple
-        explode: false
-        schema:
-          type: string
       responses:
         "200":
           description: data about the recipe
@@ -276,14 +223,6 @@ paths:
       - Recipes
       summary: Return three random recipes
       description: Get an array of recipes
-      parameters:
-      - name: userName
-        in: query
-        description: userName of the user
-        style: simple
-        explode: false
-        schema:
-          type: string
       responses:
         "200":
           description: data about three random recipes
@@ -343,13 +282,6 @@ paths:
         explode: false
         schema:
           type: string
-      - name: userName
-        in: query
-        description: userName of the user
-        style: simple
-        explode: false
-        schema:
-          type: string
       responses:
         "200":
           description: data about three random recipes
@@ -396,28 +328,6 @@ paths:
                   recipe_id:
                     type: integer
                     example: 1
-        "400":
-          description: wrong input parameters
-  /recipes/createRecipe/{userName}/{recipe_id}:
-    post:
-      tags:
-      - Recipes
-      summary: A new recipe from the client is added to the server
-      description: A JSON object contains all the details about the new user.
-      parameters:
-        - name: userName  
-          in: path
-          description: userName of the user
-          required: true
-          type: string
-        - name: recipe_id  
-          in: path
-          description: id's recipe
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: A new recipe has been added to the user
         "400":
           description: wrong input parameters
 components:
