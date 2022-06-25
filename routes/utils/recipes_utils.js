@@ -31,7 +31,7 @@ function mapRecipeDetials(recipes_info){
             title:data.title,
             image:data.image,
             readyInMinutes:data.readyInMinutes,
-            popularity:data.popularity,
+            popularity:data.aggregateLikes,
             vegan:data.vegan,
             vegetarian:data.vegetarian,
             glutenFree:data.glutenFree
