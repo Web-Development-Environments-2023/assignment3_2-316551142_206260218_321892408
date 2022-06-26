@@ -100,8 +100,8 @@ async function searchRecipes(name,number,cuisine,diet,intolerance){
         path+=`&intolerances=${intolerance}`;
     const response= await axios.get(`${api_domain}/complexSearch?number=${number}&apiKey=${process.env.spooncular_apiKey}${path}`);
     let filtered=response.data.results.filter((recipe)=>(recipe.instructions!="")&&(recipe.image));
-    if (filtered.lenght<number)
-        return searchRecipes(path,number);
+    // if (filtered.lenght<number)
+    //     return searchRecipes(path,number);
     let arr=[];
     filtered.forEach(element => {
         arr.push(element.id);
@@ -112,7 +112,8 @@ async function searchRecipes(name,number,cuisine,diet,intolerance){
 
 async function getRecipeShow(recipe_id){
     let recipe_info = await getRecipeInformation(recipe_id);
-    let { id, extendedIngredients, instructions, servings} = recipe_info.data;
+    let { id, extendedIngredients, instructions, servings,analyzedInstructions,title,
+        readyInMinutes,image,aggregateLikes,vegan,vegetarian, glutenFree} = recipe_info.data;
     let ingredients=[];
     for (i in extendedIngredients){
         ingredients.push({
@@ -122,10 +123,17 @@ async function getRecipeShow(recipe_id){
     }
     return {
         id: id,
-        extendedIngredients: ingredients,
+        extendedIngredients: extendedIngredients,
         instructions: instructions,
         servings: servings,
-        
+        analyzedInstructions:analyzedInstructions,
+        title: title,
+        readyInMinutes: readyInMinutes,
+        image: image,
+        aggregateLikes: aggregateLikes,
+        vegan: vegan,
+        vegetarian: vegetarian,
+        glutenFree: glutenFree
     }
 }
 
