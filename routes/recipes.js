@@ -73,7 +73,7 @@ router.post("/createRecipe/",async(req,res,next)=>{
       if(req.body.owner)
         a=`,'${req.body.owner}','${req.body.customaryPrepare}'`;
       else a=",'',''";
-      await DButils.execQuery(`insert into recipes values (${len},'${req.body.recipeName}','${req.body.image}','${req.body.preparationTime}',${req.body.clickable},'${req.body.ingredients}','${req.body.preparationInstructions}',${req.body.numberOfDishes},${req.body.vegetarianOrVegan},${req.body.gluten}${a})`);
+      await DButils.execQuery(`insert into recipes values (${len},'${req.body.recipeName}','${req.body.image}','${req.body.preparationTime}',${req.body.clickable},'${req.body.ingredients}','${req.body.preparationInsructions}',${req.body.numberOfDishes},${req.body.vegetarian},${req.body.vegan},${req.body.gluten}${a})`);
       await user_utils.createRecipe(userName,len);
       res.status(201).send({ message: `Recipe ${len} was created successfully`, success: true ,recipe_id: len});
     }else res.sendStatus(401);

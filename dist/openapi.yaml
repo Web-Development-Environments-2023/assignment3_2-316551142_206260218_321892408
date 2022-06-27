@@ -562,10 +562,14 @@ components:
           type: integer
           description: number of dishes 
           example: 4
-        vegetarianOrVegan:
+        vegetarian:
           type: boolean
           description: indication if the recipe is vegetarian
           example: false
+        Vegan:
+          type: boolean
+          description: indication if the recipe is vegan
+          example: false  
         gluten:
           type: boolean
           description: indication if the recipe is gluten free
