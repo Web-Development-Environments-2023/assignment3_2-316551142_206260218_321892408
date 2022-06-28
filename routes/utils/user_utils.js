@@ -8,6 +8,14 @@ async function markAsFavorite(userName, recipe_id){
     return true;
 }
 
+async function removeFavorite(userName, recipe_id){
+    const user=await DButils.execQuery(`select userName from users where userName='${userName}'`);
+    if (user.length ==0)
+        return false;
+    await DButils.execQuery(`delete from favorite_recipes where userName='${userName}' AND recipe_id=${recipe_id}`);
+    return true;
+}
+
 async function getFavoriteRecipes(userName){
     const user=await DButils.execQuery(`select userName from users where userName='${userName}'`);
     if (user.length ==0)
@@ -153,3 +161,4 @@ exports.getViewsId = getViewsId;
 exports.getFavoritesId = getFavoritesId;
 exports.getFavoriteFromId = getFavoriteFromId;
 exports.createRecipe = createRecipe;
+exports.removeFavorite = removeFavorite;

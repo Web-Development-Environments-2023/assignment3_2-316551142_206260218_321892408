@@ -37,6 +37,20 @@ router.post('/favorites', async (req,res,next) => {
   }
 })
 
+
+router.post('/removeFavorite', async (req,res,next) => {
+  try{
+    const userName = req.session.user_id;
+    const recipe_id = req.body.reciepeId;
+    let flag=await user_utils.removeFavorite(userName,recipe_id);
+    if (flag)
+      res.status(200).send("The Recipe successfully removed");
+    else res.sendStatus(401);
+    } catch(error){
+    next(error);
+  }
+})
+
 /**
  * This path returns the favorites recipes that were saved by the logged-in user
  */

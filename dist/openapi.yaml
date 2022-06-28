@@ -68,6 +68,29 @@ paths:
       responses:
         "200":
           description: "the user has ben successfully logged out"
+  /users/removeFavorite:
+    post:
+      tags:
+      - Users
+      summary: remove recipe in the favorites list of a user
+      description: remove recipe in the favorites list of a user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reciepeId:
+                  type: string
+                  description: reciepe's id which the user removed
+                  example: 716429
+      responses:
+        "200":
+          description: The Recipe successfully removed
+        "401":
+          description: user is not authorized
+      security:
+      - cookieAuth: []
   /users/favorites:
     post:
       tags:
@@ -454,7 +477,7 @@ components:
           type: string
           description: ingredients of the recipe
           example: sugar:50g, milk:10ml
-        preparationInsructions:
+        preparationInstructions:
           type: string
           description: Insructions of the recipe
           example: Add 50 gram of sugar to the bowl
@@ -554,7 +577,7 @@ components:
           type: string
           description: ingredients of the recipe
           example: sugar:50g, milk:10ml
-        preparationInsructions:
+        preparationInstructions:
           type: string
           description: Insructions of the recipe
           example: Add 50 gram of sugar to the bowl
