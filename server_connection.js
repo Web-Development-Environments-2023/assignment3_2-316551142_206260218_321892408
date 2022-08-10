@@ -82,4 +82,3 @@ function onListening() {
     : 'port ' + addr.port;
     console.log(`Server listen in port ${port} in adrress ${addr.address}`);
 }
-module.exports=app;

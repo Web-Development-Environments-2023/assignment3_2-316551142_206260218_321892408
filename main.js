@@ -28,11 +28,11 @@ app.use(express.static(path.join(__dirname, "public"))); //To serve static files
 //local:
 // app.use(express.static(path.join(__dirname, "dist")));
 //remote:
-app.use(express.static(path.join(__dirname, '../assignment-3-3-basic/dist')));
+app.use(express.static(path.join(__dirname, '../assignment3-3-316551142_206260218_321892408/dist')));
 app.get("/",function(req,res)
 { 
   //remote: 
-  res.sendFile(path.join(__dirname, '../assignment-3-3-basic/dist/index.html'));
+  res.sendFile(path.join(__dirname, '../assignment3-3-316551142_206260218_321892408/dist/index.html'));
   //local:
   // res.sendFile(__dirname+"/index.html");
 
@@ -89,13 +89,15 @@ app.use(function (err, req, res, next) {
 
 
 
-const server = app.listen(port, () => {
-  console.log(`Server listen on port ${port}`);
-});
+// const server = app.listen(port, () => {
+//   console.log(`Server listen on port ${port}`);
+// });
 
-process.on("SIGINT", function () {
-  if (server) {
-    server.close(() => console.log("server closed"));
-  }
-  process.exit();
-});
+// process.on("SIGINT", function () {
+//   if (server) {
+//     server.close(() => console.log("server closed"));
+//   }
+//   process.exit();
+// });
+
+module.exports=app;
