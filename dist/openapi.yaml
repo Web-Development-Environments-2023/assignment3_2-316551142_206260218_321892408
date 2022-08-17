@@ -7,7 +7,7 @@ servers:
 # local:
 # - url: "http://127.0.0.1:3000"
 # remote:
-- url: "http://132.72.65.211:443"
+- url: "http://132.73.84.122:443"
   description: SwaggerHub API Auto Mocking hey
 tags:
 - name: Auth
@@ -539,7 +539,7 @@ components:
                   type: string
                   example: cups
                 unitLong:
-                  type: ml
+                  type: string
                   example: milliliters
             metric:
               type: object
@@ -551,7 +551,7 @@ components:
                   type: string
                   example: cups
                 unitLong:
-                  type: ml
+                  type: string
                   example: milliliters
     CreateRecipe:
       type: object
